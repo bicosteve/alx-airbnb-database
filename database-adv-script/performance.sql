@@ -70,3 +70,13 @@ WHERE
     b.created_at >= CURRENT_DATE - INTERVAL 30 DAY
 LIMIT
     100;
+
+-- 4. Analyze the query’s performance using EXPLAIN and identify any inefficiencies.
+EXPLAIN
+SELECT
+    *
+FROM
+    Booking
+WHERE
+    start_date BETWEEN '2025-01-01'
+    AND '2025-05-31';
