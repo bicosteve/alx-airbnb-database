@@ -1,14 +1,24 @@
 CREATE INDEX idx_user_id ON `User`(`user_id`, `email`);
 
-CREATE INDEX idx_property_id ON `Property`(`property_id`, `created_at`);
+CREATE INDEX idx_property_id ON `Property`(`property_id`, `host_id`, `created_at`);
 
-CREATE INDEX idx_booking_id ON `Booking`(`booking_id`, `created_at`);
+CREATE INDEX idx_booking_id ON `Booking`(
+    `booking_id`,
+    `propery_id`,
+    `user_id`,
+    `created_at`
+);
 
-CREATE INDEX idx_payment_id ON `Payment`(`payment_id`, `payment_date`);
+CREATE INDEX idx_payment_id ON `Payment`(`payment_id`, `booking_id`, `payment_date`);
 
-CREATE INDEX idx_review_id ON `Review`(`review_id`, `rating`);
+CREATE INDEX idx_review_id ON `Review`(`review_id`, `property_id`, `user_id`, `rating`);
 
-CREATE INDEX idx_message_id ON `Message`(`message_id`, `sent_at`);
+CREATE INDEX idx_message_id ON `Message`(
+    `message_id`,
+    `sender_id`,
+    `recipient_id`,
+    `sent_at`
+);
 
 -- PERFORMANCE
 -- EXPLAIN
