@@ -15,3 +15,34 @@ SELECT \*
 FROM
 User FULL
 OUTER JOIN Booking ON User.user_id = Booking.user_id;
+
+-- 4. Write a query to find all properties where the average rating is greater than 4.0 using a subquery.
+SELECT \*
+FROM
+Property
+WHERE
+property_id IN (
+SELECT
+property_id
+FROM
+Review
+WHERE
+rating > 4.0
+);
+
+-- 5. Write a correlated subquery to find users who have made more than 3 bookings.
+SELECT
+_
+FROM
+User
+WHERE
+user_id IN (
+SELECT
+user_id
+FROM
+Booking
+GROUP BY
+user_id
+HAVING
+COUNT(_) > 3
+);
